@@ -196,12 +196,19 @@ void printChar(char c)
           if(nVals==1) {
             fg = ILI9341_WHITE;
             bg = ILI9341_BLACK;
-          }
+          } // ADD other terminal attributes here, like v==2 Dim, v==7 Inverted, etc
           bold = 0;
         } else
         if(v == 1){ // all attributes off
           bold = 1;
         } else
+        /* Expand below to include all colors available in a 565RGB layout by sending the colors directly
+           using something like 
+           \e[(3x10^5+65535)m for white fg
+           \e[(3x10^5+1920)m for green fg
+           \e[(4x10^5+2047)m for cyan bg
+
+        */
         if(v >= 30 && v < 38){ // fg colors
           fg = colors[v-30]; 
         } else if(v >= 40 && v < 48){
